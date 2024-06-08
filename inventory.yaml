@@ -1,12 +1,12 @@
 gcp:
   hosts:
     master:
-      ansible_host: master.ruchan.dev
-      ansible_user: ruchanyalcin
+      ansible_host: example.com
+      ansible_user: user
 
     worker:
-      ansible_host: worker.ruchan.dev
-      ansible_user: ruchanyalcin
+      ansible_host: 192.168.1.1
+      ansible_user: user
 
         
 

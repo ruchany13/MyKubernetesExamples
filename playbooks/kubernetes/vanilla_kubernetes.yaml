@@ -1,11 +1,11 @@
-- name: Kubernetes
+- name: Vanilla Kubernetes Setup
   hosts: all
   become: true
 
   tasks:
     - name: Disable Swap
-      command: swapoff -a
-      ignore_errors: yes
+      ansible.legacy.shell:
+        swapoff -a
 
     - name: Remove Swap Entry from /etc/fstab
       lineinfile:
@@ -63,7 +63,7 @@
 
     - name: add gpg key
       apt_key:
-        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        url: https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key
    
     - name: add kubernetes repo
       apt_repository:
