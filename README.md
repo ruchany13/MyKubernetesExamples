@@ -8,6 +8,13 @@ There are an exapmle for Ansible.
 ```bash
 touch inventory.yml
 ```
+- Or write hosts on `/etc/ansible/hosts` file:
+```ini
+[windows]
+192.0.2.50
+[linux]
+192.0.3.50
+```
 - Create playbook file. It is include jobs for remote server:
 ```bash
 touch nginx.yml
