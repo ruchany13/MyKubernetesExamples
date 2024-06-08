@@ -1,0 +1,31 @@
+- name: Nginx for Kubernetes LB
+  hosts: worker
+  become: true
+
+  tasks:
+  - name: Install Nginx
+    apt:
+      name: nginx
+      update_cache: yes
+      state: latest
+
+  - name: start nginx
+    service:
+      name: nginx
+      state: started
+
+- name: Configure LB with SSL
+  hosts: worker
+  become: true
+
+  tasks:
+  - name: Install Certbot with Snap
+    community.general.snap:
+      name: certbot
+      classic: yes
+
+  - name: Install Let's Encrypt
+    apt:
+      name: letsencrypt
+      update_cache: yes
+      state: latest
