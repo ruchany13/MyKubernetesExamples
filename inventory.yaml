@@ -1,0 +1,16 @@
+gcp:
+  hosts:
+    master:
+      ansible_host: master.ruchan.dev
+      ansible_user: ruchanyalcin
+
+    worker:
+      ansible_host: worker.ruchan.dev
+      ansible_user: ruchanyalcin
+
+        
+
+       
+
+
+
