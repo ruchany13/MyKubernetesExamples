@@ -61,14 +61,21 @@
          daemon_reload: true
          name: containerd
 
-    - name: add gpg key
-      apt_key:
+    - name: Kubernetes GPG Anahtarını İndir ve Ekle
+      ansible.builtin.get_url:
         url: https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key
-   
-    - name: add kubernetes repo
-      apt_repository:
-        repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+        dest: /tmp/Release.key
+        mode: '0644'
+    
+    - name: GPG Anahtarını İşle
+      ansible.builtin.shell:
+        cmd: gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/Release.key
+        
+    - name: Kubernetes Deposunu Ekle
+      ansible.builtin.apt_repository:
+        repo: 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /'
         state: present
+        filename: kubernetes
 
     - name: Install kubectl, kubeadm, kubelet
       apt:

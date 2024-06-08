@@ -15,6 +15,12 @@ touch inventory.yml
 [linux]
 192.0.3.50
 ```
+- Test connection to hosts:
+```bash
+ansible all -m ping
+# OR
+ansible all -m ping -i inventory.yaml
+```
 - Create playbook file. It is include jobs for remote server:
 ```bash
 touch nginx.yml
@@ -22,6 +28,8 @@ touch nginx.yml
 - Now, we can run our playbook file:
 ```bash
 ansible-playbook -i inventory.yml nginx.yml
+# OR
+ansible-playbook nginx.yml
 ```
 
 It is basically:)
