@@ -12,6 +12,6 @@ spec:
     args:
     - |
       while true; do
-        curl http://server-pod:5000 || echo "Server not reachable";
+        curl http://<pod-ip>:5000 || echo "Server not reachable";
         sleep 5;
       done;
